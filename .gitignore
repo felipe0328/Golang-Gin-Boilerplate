@@ -28,3 +28,6 @@ go.work
 
 # Omit DB Folder 
 [Dd]atabase 
+
+## ENV FILE
+*.env

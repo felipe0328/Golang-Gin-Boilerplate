@@ -8,17 +8,10 @@ services:
     volumes:
       - ./database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=microserviceDB
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB="${DB_DATABASE_NAME}"
+      - POSTGRES_USER="${DB_USER}"
+      - POSTGRES_PASSWORD="${DB_PASSWORD}"
   microservice:
     build: .
     ports:
       - "8080:8080"
-    environment:
-      - DB_HOST=localhost
-      - DB_PORT=5432
-      - DB_USER=admin
-      - DB_PASSWORD=password
-      - DB_DATABASE_NAME=microserviceDB
-      - DB_DATABASE_DRIVER=postgres

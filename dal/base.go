@@ -5,6 +5,7 @@ import (
 	"fmt"
 	dalmodels "gin-microservice/models/dal-models"
 	"gin-microservice/utils"
+	_ "github.com/lib/pq"   
 )
 
 var (

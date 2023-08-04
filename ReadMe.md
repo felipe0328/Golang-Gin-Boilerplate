@@ -2,6 +2,9 @@
 
 Boilerplate ready to extend and use
 
+## Env File
+Create a env file, in env_back is the template where you have to replace the values correctly, it is needed to run correctly the service
+
 ## Migrations
 
 Create new migration file: 

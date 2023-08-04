@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 const (
@@ -21,9 +22,11 @@ const (
 )
 
 func main() {
+	godotenv.Load(".env")
+
 	r := gin.Default()
 
-	// connectToDB()
+	connectToDB()
 
 	registerPing(r)
 
