@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"gin-microservice/dal"
+	"gin-microservice/endpoints/users"
 	dalmodels "gin-microservice/models/dal-models"
 	"gin-microservice/utils"
 	"net/http"
@@ -27,8 +28,7 @@ func main() {
 	r := gin.Default()
 
 	connectToDB()
-
-	registerPing(r)
+	registerEndpoints(r)
 
 	err := r.Run()
 
@@ -46,6 +46,11 @@ func connectToDB()*sql.DB {
 	}
 
 	return dal.GetDB(dbConnection)
+}
+
+func registerEndpoints(r *gin.Engine){
+	registerPing(r)
+	users.UserRoutes(r)
 }
 
 func registerPing(r *gin.Engine){
