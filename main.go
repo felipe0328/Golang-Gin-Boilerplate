@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"gin-microservice/dal"
 	"gin-microservice/endpoints/users"
-	dalmodels "gin-microservice/models/dal-models"
+	dalmodels "gin-microservice/models/dalModels"
 	"gin-microservice/utils"
 	"net/http"
 	"os"
