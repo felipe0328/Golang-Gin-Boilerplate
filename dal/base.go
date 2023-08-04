@@ -3,7 +3,7 @@ package dal
 import (
 	"database/sql"
 	"fmt"
-	dalmodels "gin-microservice/models/dal-models"
+	dalmodels "gin-microservice/models/dalModels"
 	"gin-microservice/utils"
 	_ "github.com/lib/pq"   
 )
