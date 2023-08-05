@@ -27,8 +27,8 @@ func main() {
 
 	r := gin.Default()
 
-	connectToDB()
-	registerEndpoints(r)
+	db := connectToDB()
+	registerEndpoints(r, db)
 
 	err := r.Run()
 
@@ -48,9 +48,9 @@ func connectToDB()*sql.DB {
 	return dal.GetDB(dbConnection)
 }
 
-func registerEndpoints(r *gin.Engine){
+func registerEndpoints(r *gin.Engine, db *sql.DB){
 	registerPing(r)
-	users.UserRoutes(r)
+	users.UserRoutes(r, db)
 }
 
 func registerPing(r *gin.Engine){

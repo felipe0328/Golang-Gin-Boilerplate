@@ -1,8 +1,21 @@
 package users
 
-import "github.com/gin-gonic/gin"
+import (
+	"database/sql"
+	userscontroller "gin-microservice/controller/usersController"
+	usersdal "gin-microservice/dal/usersDal"
 
-func UserRoutes(r *gin.Engine){
-	userGroup := r.Group("/user")
-	userGroup.POST("/", createUser)
+	"github.com/gin-gonic/gin"
+)
+
+func UserRoutes(r *gin.Engine, db *sql.DB) {
+	usersDal := usersdal.UsersDal{DB: db}
+	usersController := &userscontroller.UsersController{Dal: &usersDal}
+
+	postUser := PostUsers{
+		Controller: usersController,
+	}
+
+	userGroup := r.Group("/users")
+	userGroup.POST("/", postUser.createUser)
 }
