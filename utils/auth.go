@@ -19,6 +19,10 @@ func ConvertStringToHash(input string) (hashedInput string, err error) {
 	return
 }
 
+func VerifyPassword(password, hashedPassword string) error {
+	return bcrypt.CompareHashAndPassword([]byte(password), []byte(hashedPassword))
+}
+
 func RemoveSpacesFromInput(input string)(output string){
 	return html.EscapeString(strings.TrimSpace(input))
 }
