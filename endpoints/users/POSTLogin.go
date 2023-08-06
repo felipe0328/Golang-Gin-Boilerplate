@@ -28,5 +28,5 @@ func (pl *POSTLogin) Login (c *gin.Context){
 		return 
 	}
 
-	c.String(http.StatusOK, token)
+	c.JSON(http.StatusOK, gin.H{"token": token})
 }
