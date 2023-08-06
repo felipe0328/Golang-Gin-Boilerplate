@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	userscontroller "gin-microservice/controller/usersController"
 	usersdal "gin-microservice/dal/usersDal"
+	"gin-microservice/endpoints/middlewares"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,4 +23,8 @@ func UserRoutes(r *gin.Engine, db *sql.DB) {
 	userGroup := r.Group("/users")
 	userGroup.POST("/", endpoints.createUser)
 	userGroup.POST("/login", endpoints.Login)
+
+	authenticated := r.Group("/users")
+	authenticated.Use(middlewares.JwtAuthMiddleare)
+	authenticated.GET("/ping", func(ctx *gin.Context) {ctx.String(http.StatusOK, "pong")})
 }

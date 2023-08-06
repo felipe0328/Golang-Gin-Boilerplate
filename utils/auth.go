@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"html"
 	"os"
 	"strconv"
