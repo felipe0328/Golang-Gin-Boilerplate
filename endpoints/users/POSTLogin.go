@@ -1,7 +1,6 @@
 package users
 
 import (
-	userscontroller "gin-microservice/controller/usersController"
 	usersmodels "gin-microservice/models/usersModels"
 	"gin-microservice/utils"
 	"net/http"
@@ -9,11 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type POSTLogin struct {
-	Controller userscontroller.IUsersController
-}
-
-func (pl *POSTLogin) Login (c *gin.Context){
+func (ue *UsersEndpoints) Login (c *gin.Context){
 	var userLoginData usersmodels.UserLogin
 
 	if err := c.ShouldBindJSON(&userLoginData); err != nil {
@@ -21,7 +16,7 @@ func (pl *POSTLogin) Login (c *gin.Context){
 		return
 	}
 
-	token, err :=  pl.Controller.VerifyLogin(userLoginData)
+	token, err :=  ue.Controller.VerifyLogin(userLoginData)
 
 	if err != nil {
 		c.String(http.StatusBadRequest, err.Error())

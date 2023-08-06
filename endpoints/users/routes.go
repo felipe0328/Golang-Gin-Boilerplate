@@ -8,14 +8,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type UsersEndpoints struct {
+	Controller userscontroller.IUsersController
+}
+
 func UserRoutes(r *gin.Engine, db *sql.DB) {
 	usersDal := usersdal.UsersDal{DB: db}
 	usersController := &userscontroller.UsersController{Dal: &usersDal}
 
-	postCreateUser := PostCreateUser{Controller: usersController}
-	postLogin := POSTLogin{Controller: usersController}
+	endpoints := UsersEndpoints{Controller: usersController} 
 
 	userGroup := r.Group("/users")
-	userGroup.POST("/", postCreateUser.createUser)
-	userGroup.POST("/login", postLogin.Login)
+	userGroup.POST("/", endpoints.createUser)
+	userGroup.POST("/login", endpoints.Login)
 }
