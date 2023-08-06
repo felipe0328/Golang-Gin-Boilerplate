@@ -12,10 +12,10 @@ func UserRoutes(r *gin.Engine, db *sql.DB) {
 	usersDal := usersdal.UsersDal{DB: db}
 	usersController := &userscontroller.UsersController{Dal: &usersDal}
 
-	postUser := PostUsers{
-		Controller: usersController,
-	}
+	postCreateUser := PostCreateUser{Controller: usersController}
+	postLogin := POSTLogin{Controller: usersController}
 
 	userGroup := r.Group("/users")
-	userGroup.POST("/", postUser.createUser)
+	userGroup.POST("/", postCreateUser.createUser)
+	userGroup.POST("/login", postLogin.Login)
 }

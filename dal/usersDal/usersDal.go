@@ -7,6 +7,7 @@ import (
 
 type IUsersDal interface {
 	CreateUser(usersmodels.User)(usersmodels.UserObject,error)
+	GetUserByLoginData(usersmodels.UserLogin)(usersmodels.UserDalObject, error)
 }
 
 type UsersDal struct {

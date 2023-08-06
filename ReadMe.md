@@ -20,3 +20,7 @@ Rollback Migrations
 Force Migration
 
 > ` migrate -path database/migration/ -database "postgresql://username:secretkey@localhost:5432/database_name?sslmode=disable" force <VERSION> `
+
+## To set an API Secret using ssl
+
+> `openssl rand -hex 32`

@@ -21,3 +21,14 @@ type UserObject struct {
 	CreatedOn *time.Time `json:"createdOn"`
 	IsActive  bool       `json:"isActive"`
 }
+
+type UserDalObject struct {
+	ID        string     `json:"id"`
+	Username  string     `json:"username"`
+	Password  string     `json:"password"`
+	Email     string     `json:"email"`
+	FirstName string     `json:"firstName"`
+	LastName  string     `json:"lastName"`
+	CreatedOn *time.Time `json:"createdOn"`
+	IsActive  bool       `json:"isActive"`
+}

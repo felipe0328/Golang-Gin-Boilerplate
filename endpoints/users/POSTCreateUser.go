@@ -9,11 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type PostUsers struct {
+type PostCreateUser struct {
 	Controller userscontroller.IUsersController
 }
 
-func (ue *PostUsers) createUser(c *gin.Context) {
+func (ue *PostCreateUser) createUser(c *gin.Context) {
 	var newUser usersmodels.User
 	if err := c.ShouldBindJSON(&newUser); err != nil {
 		c.String(http.StatusBadRequest, utils.ErrInvalidUserObject.Error())
@@ -27,5 +27,5 @@ func (ue *PostUsers) createUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, createdUser)
+	c.JSON(http.StatusCreated, createdUser)
 }

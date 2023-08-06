@@ -8,7 +8,8 @@ import (
 var (
 	ErrInvalidUserObject    = errors.New("invalid user object")
 	ErrUnableToHashPasswrod = errors.New("unable to create hash password, please verify")
-	ErrUnableToRegisterUser    = errors.New("unable to register user in database, please verify")
+	ErrUnableToRegisterUser = errors.New("unable to register user in database, please verify")
+	ErrInvalidUserData      = errors.New("invalid user login data, please verify")
 )
 
 func CheckPanic(err error) {
