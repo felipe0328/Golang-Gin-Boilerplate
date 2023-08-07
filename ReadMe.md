@@ -24,3 +24,11 @@ Force Migration
 ## To set an API Secret using ssl
 
 > `openssl rand -hex 32`
+
+## Create mocks
+
+To create mocks of the interfaces go to the folder and run
+> ` mockery --all `
+
+## Run tests
+> `go test ./...`
