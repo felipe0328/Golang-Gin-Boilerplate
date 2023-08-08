@@ -18,13 +18,13 @@ func UserRoutes(r *gin.Engine, db *sql.DB) {
 	usersDal := usersdal.UsersDal{DB: db}
 	usersController := &userscontroller.UsersController{Dal: &usersDal}
 
-	endpoints := UsersEndpoints{Controller: usersController} 
+	endpoints := UsersEndpoints{Controller: usersController}
 
 	userGroup := r.Group("/users")
-	userGroup.POST("/", endpoints.createUser)
+	userGroup.POST("/", endpoints.CreateUser)
 	userGroup.POST("/login", endpoints.Login)
 
 	authenticated := r.Group("/users")
 	authenticated.Use(middlewares.JwtAuthMiddleare)
-	authenticated.GET("/ping", func(ctx *gin.Context) {ctx.String(http.StatusOK, "pong")})
+	authenticated.GET("/ping", func(ctx *gin.Context) { ctx.String(http.StatusOK, "pong") })
 }

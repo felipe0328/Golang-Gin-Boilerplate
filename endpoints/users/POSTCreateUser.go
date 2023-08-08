@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ue *UsersEndpoints) createUser(c *gin.Context) {
+func (ue *UsersEndpoints) CreateUser(c *gin.Context) {
 	var newUser usersmodels.User
 	if err := c.ShouldBindJSON(&newUser); err != nil {
 		c.String(http.StatusBadRequest, utils.ErrInvalidUserObject.Error())
