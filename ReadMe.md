@@ -38,3 +38,11 @@ To get test coverage, run
 
 To see the coverage output in a web browser
 > `go tool cover -html coverage.out`
+
+## Documentation
+
+After running the service the documentation can be found in 
+
+> `/docs/index.html`
+
+After creating and endpoint run `swag init` to create the documentation files, and `swag fmt` to run formatting in the file
