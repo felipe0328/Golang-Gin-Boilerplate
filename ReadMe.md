@@ -32,3 +32,9 @@ To create mocks of the interfaces go to the folder and run
 
 ## Run tests
 > `go test ./...`
+
+To get test coverage, run
+> `go test ./... -coverprofile coverage.out`
+
+To see the coverage output in a web browser
+> `go tool cover -html coverage.out`
