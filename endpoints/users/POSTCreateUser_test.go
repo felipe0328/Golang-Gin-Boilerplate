@@ -31,7 +31,7 @@ func (t *POSTCreateUserTestSuite) SetupTest() {
 	}
 }
 
-func (t *POSTCreateUserTestSuite) CreateUser_Success(){
+func (t *POSTCreateUserTestSuite) Test_CreateUser_Success(){
 	userData := usersmodels.User{
 		Username: "Felipe",
 		Password: "12345",
@@ -48,7 +48,7 @@ func (t *POSTCreateUserTestSuite) CreateUser_Success(){
 	request := httptest.NewRequest(http.MethodPost, "/users", bytesBuffer)
 	c.Request = request
 
-	timeNow := time.Now()
+	var timeNow time.Time
 	expectedResponse := usersmodels.UserObject{
 		ID: "1",
 		Username: "Felipe",
