@@ -28,12 +28,14 @@ func WrapError(errorMessage, err error) error {
 
 func CheckPanic(err error) {
 	if err != nil {
+		LogError(err)
 		panic(err)
 	}
 }
 
 func CheckFatal(err error) {
 	if err != nil {
+		LogError(err)
 		log.Fatal(err)
 	}
 }
