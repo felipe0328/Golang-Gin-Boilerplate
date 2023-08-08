@@ -1,6 +1,9 @@
 package usersdal
 
-import usersmodels "gin-microservice/models/usersModels"
+import (
+	usersmodels "gin-microservice/models/usersModels"
+	"gin-microservice/utils"
+)
 
 func (ud *UsersDal) CreateUser(newUser usersmodels.User)(usersmodels.UserObject, error){
 	query := `INSERT into USERS(username, password, email, first_name, last_name) VALUES ($1, $2, $3, $4, $5) returning id, username, first_name , last_name , email, created_on , is_active`
@@ -33,7 +36,7 @@ func (ud *UsersDal) CreateUser(newUser usersmodels.User)(usersmodels.UserObject,
 		)
 
 		if err != nil {
-			return usersmodels.UserObject{}, err
+			return usersmodels.UserObject{}, utils.WrapError(utils.ErrUnableToCreateUser, err)
 		}
 	}
 

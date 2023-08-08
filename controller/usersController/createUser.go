@@ -9,7 +9,8 @@ func (uc *UsersController) CreateUser(newUser usersmodels.User) (usersmodels.Use
 	userPassword, err := utils.ConvertStringToHash(newUser.Password)
 
 	if err != nil {
-		return usersmodels.UserObject{}, utils.ErrUnableToHashPasswrod
+		utils.LogError(utils.WrapError(utils.ErrUnableToHashPassword, err))
+		return usersmodels.UserObject{}, utils.ErrUnableToHashPassword
 	}
 
 	newUser.Password = userPassword
@@ -18,6 +19,7 @@ func (uc *UsersController) CreateUser(newUser usersmodels.User) (usersmodels.Use
 	createdUser, err := uc.Dal.CreateUser(newUser)
 
 	if err != nil {
+		utils.LogError(utils.WrapError(utils.ErrUnableToRegisterUser, err))
 		return usersmodels.UserObject{}, utils.ErrUnableToRegisterUser
 	}
 

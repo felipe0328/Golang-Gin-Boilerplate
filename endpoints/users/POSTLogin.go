@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ue *UsersEndpoints) Login (c *gin.Context){
+func (ue *UsersEndpoints) Login(c *gin.Context) {
 	var userLoginData usersmodels.UserLogin
 
 	if err := c.ShouldBindJSON(&userLoginData); err != nil {
@@ -16,11 +16,11 @@ func (ue *UsersEndpoints) Login (c *gin.Context){
 		return
 	}
 
-	token, err :=  ue.Controller.VerifyLogin(userLoginData)
+	token, err := ue.Controller.VerifyLogin(userLoginData)
 
 	if err != nil {
-		c.String(http.StatusBadRequest, err.Error())
-		return 
+		c.String(http.StatusBadRequest, utils.StringWrapError(utils.ErrInvalidLogin, err))
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"token": token})

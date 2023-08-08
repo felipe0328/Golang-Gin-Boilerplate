@@ -1,6 +1,8 @@
 package usersdal
 
-import usersmodels "gin-microservice/models/usersModels"
+import (
+	usersmodels "gin-microservice/models/usersModels"
+)
 
 func (ud *UsersDal) GetUserByLoginData(userLoginData usersmodels.UserLogin) (usersmodels.UserDalObject, error) {
 	query := `SELECT * FROM USERS WHERE username = $1`

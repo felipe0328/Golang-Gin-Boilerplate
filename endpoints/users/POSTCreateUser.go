@@ -18,7 +18,7 @@ func (ue *UsersEndpoints) createUser(c *gin.Context) {
 	createdUser, err := ue.Controller.CreateUser(newUser)
 
 	if err != nil {
-		c.String(http.StatusBadRequest, err.Error())
+		c.String(http.StatusBadRequest, utils.StringWrapError(utils.ErrUnableToCreateUser, err))
 		return
 	}
 
