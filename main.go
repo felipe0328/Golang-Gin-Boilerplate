@@ -66,7 +66,7 @@ func registerPing(r *gin.Engine){
 }
 
 func showSwaggerDocumentation(r *gin.Engine) {
-	docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.Description = "Microservice Documentation"
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }

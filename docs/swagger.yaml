@@ -1,4 +1,63 @@
+definitions:
+  usersmodels.User:
+    properties:
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - firstName
+    - lastName
+    - password
+    - username
+    type: object
+  usersmodels.UserObject:
+    properties:
+      createdOn:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: string
+      isActive:
+        type: boolean
+      lastName:
+        type: string
+      username:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /users/:
+    post:
+      description: Create new user in DB
+      parameters:
+      - description: User Data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/usersmodels.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/usersmodels.UserObject'
+        "400":
+          description: invalid user object； invalid to create user
+          schema:
+            type: string
+      summary: CreateUser
 swagger: "2.0"
