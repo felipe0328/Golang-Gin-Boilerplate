@@ -11,6 +11,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/swaggo/files"
+	docs "gin-microservice/docs"
 )
 
 const (
@@ -50,6 +53,7 @@ func connectToDB()*sql.DB {
 
 func registerEndpoints(r *gin.Engine, db *sql.DB){
 	registerPing(r)
+	showSwaggerDocumentation(r)
 	users.UserRoutes(r, db)
 }
 
@@ -59,4 +63,10 @@ func registerPing(r *gin.Engine){
 			"message": "pong",
 		})
 	})
+}
+
+func showSwaggerDocumentation(r *gin.Engine) {
+	docs.SwaggerInfo.BasePath = "/api/v1"
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
