@@ -49,9 +49,51 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/users/login": {
+            "post": {
+                "description": "Login with Username and Password",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Login",
+                "parameters": [
+                    {
+                        "description": "User Login Data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/usersmodels.UserLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/usersmodels.Token"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid user object； invalid to create user",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "usersmodels.Token": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
         "usersmodels.User": {
             "type": "object",
             "required": [
@@ -71,6 +113,17 @@ const docTemplate = `{
                 "lastName": {
                     "type": "string"
                 },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "usersmodels.UserLogin": {
+            "type": "object",
+            "properties": {
                 "password": {
                     "type": "string"
                 },

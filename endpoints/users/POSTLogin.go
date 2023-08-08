@@ -8,6 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//	@Summary		Login
+//	@Description	Login with Username and Password
+//	@Produce		json
+//	@Param			body	body		usersmodels.UserLogin	true	"User Login Data"
+//	@Success		200		{object}	usersmodels.Token
+//	@Failure		400		{string}	string	"invalid user object； invalid to create user"
+//	@Router			/users/login [post]
 func (ue *UsersEndpoints) Login(c *gin.Context) {
 	var userLoginData usersmodels.UserLogin
 
@@ -16,12 +23,15 @@ func (ue *UsersEndpoints) Login(c *gin.Context) {
 		return
 	}
 
-	token, err := ue.Controller.VerifyLogin(userLoginData)
+	var token usersmodels.Token
+	var err error
+
+	token.Token, err = ue.Controller.VerifyLogin(userLoginData)
 
 	if err != nil {
 		c.String(http.StatusBadRequest, utils.StringWrapError(utils.ErrInvalidLogin, err))
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, token)
 }
